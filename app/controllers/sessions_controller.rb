@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     @user = User.find_by(email: user_params[:email])
 
     # Check if the user exists and if they provided the correct password
-    if @user && @user.password == user_params[:password]
+    if @user && @user.is_password?(user_params[:password])
       session[:user_id] = @user.id
       redirect_to articles_path
 
